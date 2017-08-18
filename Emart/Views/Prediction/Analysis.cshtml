@@ -1,0 +1,59 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>PredictiveAnalytics Features:</h2>
+<br />
+<li> Default</li>
+<br />
+<div id="ControlRegion">
+
+    <form id="form1">
+        <div style="font-family:Tahoma; font-weight:bold">
+
+            <br /><br />
+            @Html.Label("city")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.Label("title")
+            <br />
+            @Html.TextBox("city")     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            @Html.TextBox("title")
+            <br /><br /><br />
+            @Html.Label("familysize")
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br />
+            @Html.TextBox("familysize")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        </div>
+        <br /><br />
+        <input type="button" id="submitId" value="Predict" onclick="myfunc()" />
+        <script type="text/javascript">
+                function myfunc() {
+                    var PL = $('#city').val();
+                    var PW = $('#title').val();
+                    var SL = $('#familysize').val();
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("Analysis", "Prediction")',
+                        data: {
+                        'city': PL, 'title':PW , 'familysize': SL },
+                        success: function (data) {
+                            debugger;
+                            $("#txtTitle").val(data);
+                        },
+                        error: function () {
+                        }
+                    });
+                }
+        </script>
+    </form>
+    <div class="result">
+        <br />
+        @Html.TextBox("txtTitle")
+    </div>
+
+</div>

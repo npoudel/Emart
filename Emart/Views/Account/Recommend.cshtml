@@ -1,0 +1,35 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Recommend</title>
+    <script src="~/scripts/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: "@Url.Action("Recommends","Account").ToString()",
+                //url: "/Account/EmartInWall",
+                type: "POST",
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (response) {
+                    alert(response);
+                    console.log(response);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+hlo
+    </div>
+</body>
+</html>

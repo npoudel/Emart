@@ -1,0 +1,285 @@
+﻿@model IEnumerable<Emart.Models.E_Users>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a class="active" href="/account/index">Home</a></li>
+                <li><a href="/account/member">Members</a></li>
+                <li><a href="/account/group">Groups</a></li>
+                <li><a href="/account/photos">Photos</a></li>
+                <li><a class="active" href="/account/profile">Profile</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav"></ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+
+<section>
+    @*@Html.Partial("FriendList",null)*@
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="members">
+                    <h1 class="page-header">Members</h1>
+
+
+
+                    @foreach (var item in Model)
+                    {
+
+
+                        <div class="row member-row">
+
+                            <div class="col-md-3">
+                                @if (item.imgid == 0)
+                                {
+                                    <img src="~/Content/Users/img/user.png" class="img-thumbnail">
+                                }
+                                else
+                                {
+                                    <img src="/Account/ImageRetrive/?imgID=@item.imgid" class="img-thumbnail">
+                                }
+
+                                <div class="text-center"><input type="hidden" id="userid_@item.ID" value="@item.ID" /><input type="hidden" id="username">@item.Username</div>
+                            </div>
+                            <div class="col-md-3">
+                                <p><a id="addFrn_@item.ID" onclick="addfrnFunction(@item.ID)" class="btn btn-primary btn-block"><i class="fa fa-edit"> Follow</i></a></p>
+                            </div>
+
+
+
+                            <div class="col-md-3">
+
+                                <p><a href="/Account/ProfileViewUser?id=@item.ID" onclick="profileViewFunction(@item.ID)" id="profileview_@item.ID" class="btn btn-primary btn-block"><i class="fa fa-edit"> ProfileView</i></a></p>
+                            </div>
+
+
+                        </div>
+
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+</section>
+
+
+
+<script src="~/scripts/jquery-1.12.4.min.js"></script>
+
+
+
+<script>
+
+    function addfrnFunction(id){
+        var idss = id;
+        var user = @Session["ID"];
+        //alert("h" + idss);
+        var dataObject ={
+            "S_userID": user,
+            "s_frnID": idss,
+            "Status":"0"
+        };
+
+
+
+        $.ajax({
+            url: "@Url.Action("Addfrn","Account").ToString()",
+            method: "POST",
+            data: dataObject,
+            dataType: "Json",
+
+            success: function(response)
+            {
+                console.log(response);
+                //alert("hh");
+                $("#addFrn_"+id).text("Followed");
+                $("#addFrn_"+id).attr("disabled","disabled");
+            }
+
+        });
+    }
+
+    function profileViewFunction(id){
+        var idss = id;
+        $.ajax({
+            url:"@Url.Action("ProfileViewUser","Account").ToString()",
+            method:"POST",
+            data:JSON.stringify(idss),
+            dataType:"Json",
+            success:function(response){
+
+            }
+        });
+    }
+
+    
+
+    $(document).ready(function () {
+
+        $.ajax({
+
+            url:"@Url.Action("Members","Account").ToString()",
+            dataType:"Json",
+            method:"Get",
+            contentType: 'application/json; charset=utf-8',
+            success:function(response){
+                //alert("response");
+                console.log(response);
+
+                $.ajax({
+                    url:"@Url.Action("CheckFrn","Account").ToString()",
+                    dataType:"Json",
+                    method:"Get",
+                    contentType:'application/json; charset=utf-8',
+                    success: function(response){
+                        console.log(response);
+                        for(var i=0;i<response.length;i++){
+                            var data = response[i];
+                            console.log(data);
+                            $("#addFrn_"+data["s_frnID"]).text("Followed");
+                            $("#addFrn_"+data["s_frnID"]).attr("disabled","disabled");
+                        }
+                    },error: function(response){
+                        alert("Error");
+                        console.log(response);
+                        alert(response);
+                    }
+                });
+
+
+
+
+
+
+                @*var frn_length = response.length;
+                for (var i = 0; i < frn_length; i++) {
+
+                    data = response[i];
+                    console.log(data);
+
+                    $("#profileview_"+data["ID"]).click(function(){
+
+                        var idss = $("#userid_"+data["ID"]).val();
+                        $.ajax({
+                            url:"@Url.Action("ProfileViewUser","Account").ToString()",
+                            method:"POST",
+                            data:JSON.stringify(idss),
+                            dataType:"Json",
+                            success:function(response){
+
+                            }
+                        });
+                    });
+
+
+                    $("#addFrn_"+data["ID"]).click(function(){
+                        //alert("h");
+
+                        var idss = $("#userid_"+data["ID"]).val();
+                        var user = @Session["ID"];
+                        alert("h" + idss);
+                        var dataObject ={
+                            "S_userID": user,
+                            "s_frnID": idss,
+                            "Status":"0"
+                        };
+
+
+
+                        $.ajax({
+                            url: "@Url.Action("Addfrn","Account").ToString()",
+                            method: "POST",
+                            data: dataObject,
+                            dataType: "Json",
+
+                            success: function(response)
+                            {
+                                console.log(response);
+                                //alert("hh");
+                                $("#addFrn_"+data["ID"]).text("Sent");
+                                $("#addFrn_"+data["ID"]).attr("disabled","disabled");
+                            }
+
+                        });
+                    });
+
+                }*@
+            }
+
+        });
+
+        
+
+
+        @*$("#addFrn").click(function(){
+            //alert("h");
+
+
+            var idss = $("#userid").val();
+            var user = @Session["ID"];
+            //alert("h" + idss);
+            var dataObject ={
+                "S_userID": user,
+                "s_frnID": idss,
+                "Status":"0"
+            };
+
+            $.ajax({
+                url: "@Url.Action("Addfrn","Account").ToString()",
+                method: "POST",
+                data: dataObject,
+                dataType: "Json",
+
+                success: function(response)
+                {
+                    //console.log(response);
+                    //alert("hh");
+                    $("#addFrn").text("Sent");
+                }
+
+            })
+        })*@
+
+        @*$("#profileview").click(function(){
+
+            var idss = $("#userid").val();
+
+
+            $.ajax({
+                url:"@Url.Action("ProfileViewUser","Account").ToString()",
+                method:"POST",
+                data:JSON.stringify(idss),
+                dataType:"Json",
+                success:function(response){
+
+                    alert("2342");
+
+                }
+            })
+        })*@
+    })
+
+</script>

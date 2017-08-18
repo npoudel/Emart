@@ -1,0 +1,135 @@
+﻿@model Emart.ViewModels.SocialViewModel
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="profile">
+                    <h1 class="page-header">@Model.E_users.Username</h1>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div id="imgPreview" class="thumbnail">
+
+                                <div>
+                                   
+                                    <img id="profileimg" src="/Account/ImageRetrive?imgI=1" class="img-responsive thumbnail" />
+                                </div>
+
+
+
+
+
+
+                                <img id="targetimg" src="~/Content/Users/img/user.png" class="img-thumbnail">
+                                <div class="caption" id="captions" style="display:none">
+                                    <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                                    <span id="description"></span>
+                                </div>
+
+                                <a href="#" id="upload" class="btn btn-default">Uplaod</a>
+                            </div>
+
+
+
+
+                            <div class="btn btn-primary">
+                                <input type="file" id="imageBrowse" />
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <ul>
+                                <li><strong>Name: </strong>@Model.E_users.Username</li>
+                                <li><strong>Email Address: </strong>@Model.E_users.Email</li>
+                                <li><strong>Firstname: </strong>@Model.E_users.FirstName</li>
+                                @*<li><strong>LastName: </strong>@Model.LastName</li>
+                                <li><strong>City: </strong>@Model.City</li>
+                                <li><strong>State: </strong>@Model.State</li>
+                                <li><strong>Address: </strong>@Model.Address</li>
+                                <li><strong>Gender: </strong>@Model.Gender</li>
+                                <li><strong>Profession: </strong>@Model.Profession</li>
+                                <li><strong>Contact No: </strong>@Model.PhoneNumber</li>*@
+                            </ul>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Profile Wall</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <textarea class="form-control" placeholder="Write on the wall"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-default">Submit</button>
+                                        <div class="pull-right">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Text</button>
+                                                <button type="button" class="btn btn-default"><i class="fa fa-file-image-o"></i> Image</button>
+                                                <button type="button" class="btn btn-default"><i class="fa fa-file-video-o"></i> Video</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default friends">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">My Friends</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul>
+                            <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                            <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                            <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                            <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                            <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                            <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                            <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                            <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                            <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                            <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                            <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                            <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                        <a class="btn btn-primary" href="#">View All Friend</a>
+                    </div>
+                </div>
+
+                <div class="panel panel-default groups">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Latest Groups</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="group-item">
+                            <img src="~/Content/Users/img/group.png" />
+                            <h4><a href="#">Sample Group</a></h4>
+                            <p>This is a Dobble social network simple group</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="group-item">
+                            <img src="~/Content/Users/img/group.png" />
+                            <h4><a href="#">Sample Group</a></h4>
+                            <p>This is a Dobble social network simple group</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="group-item">
+                            <img src="~/Content/Users/img/group.png" />
+                            <h4><a href="#">Sample Group</a></h4>
+                            <p>This is a Dobble social network simple group</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <a class="btn btn-primary" href="#">View All Groups</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

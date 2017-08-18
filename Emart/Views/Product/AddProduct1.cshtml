@@ -1,0 +1,25 @@
+﻿@model Emart.ViewModels.ProductViewModel
+
+@{
+    ViewBag.Title = "AddProduct1";
+    Layout = "~/Views/Product/_AddProduct.cshtml";
+}
+
+<!DOCTYPE html>
+<div class="app-content content container-fluid">
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-6 col-xs-12 mb-1">
+                <br><br> <h2 style="color:#0fad00">Success</h2>
+
+                <h3>Dear, @Model.Vendor.FirstName @Model.Vendor.LastName </h3>
+                <p style="font-size:20px;color:#5C5C5C;">
+                    Your Product has been added
+                </p>
+
+                <br><br>
+            </div>
+
+        </div>
+    </div>
+</div>

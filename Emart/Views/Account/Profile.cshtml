@@ -1,0 +1,283 @@
+﻿@model Emart.ViewModels.SocialViewModel
+
+
+<body>
+
+@Html.Partial("NavBar");
+
+
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="profile">
+                        <h1 class="page-header">@Session["Username"]</h1>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div id="imgPreview" class="thumbnail">
+                                   @if (Model.E_users.imgid != 0)
+                                   {
+                                        <div>
+
+                                            <img id="profileimg" src="/Account/ImageRetrive?imgID=@Model.E_users.imgid" class="img-responsive thumbnail" />
+                                        </div>
+
+                                   }
+                                  
+
+
+
+
+
+                                    <img id="targetimg" src="~/Content/Users/img/user.png" class="img-thumbnail">
+                                    <div class="caption" id="captions" style="display:none">
+                                        <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                                        <span id="description"></span>
+                                    </div>
+                                   
+                                  
+                                   
+                                    <a href="#" id="upload" class="btn btn-default">Uplaod</a>
+                                </div>
+
+
+
+
+                                <div class="btn btn-primary">
+                                    <input type="file" id="imageBrowse" />
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <ul>
+                                    <li><strong>Name: </strong>@Session["Username"]</li>
+                                    <li><strong>Email Address: </strong>@Model.E_users.Email</li>
+                                    <li><strong>Firstname: </strong>@Model.E_users.FirstName</li>
+                                    <li><strong>LastName: </strong>@Model.E_users.LastName</li>
+                                    <li><strong>City: </strong>@Model.E_users.City</li>
+                                    <li><strong>State: </strong>@Model.E_users.State</li>
+                                    <li><strong>Address: </strong>@Model.E_users.Address</li>
+                                    <li><strong>Gender: </strong>@Model.E_users.Gender</li>
+                                    <li><strong>Profession: </strong>@Model.E_users.Profession</li>
+                                    <li><strong>Contact No: </strong>@Model.E_users.PhoneNumber</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Profile Wall</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <textarea class="form-control" placeholder="Write on the wall"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-default">Submit</button>
+                                            <div class="pull-right">
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Text</button>
+                                                    <button type="button" class="btn btn-default"><i class="fa fa-file-image-o"></i> Image</button>
+                                                    <button type="button" class="btn btn-default"><i class="fa fa-file-video-o"></i> Video</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-4">
+                    <a href="/Account/Recommend" class="btn btn-default">Recommend</a>
+                    <div class="panel panel-default friends">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">My Friends</h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul>
+                                <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                                <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                                <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                                <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                                <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                                <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                                <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                                <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                                <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                                <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                                <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                                <li><a class="thumbnail" href="profile.html"><img src="~/Content/Users/img/user.png"></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                            <a class="btn btn-primary" href="#">View All Friend</a>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default groups">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Latest Groups</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="group-item">
+                                <img src="~/Content/Users/img/group.png" />
+                                <h4><a href="#">Sample Group</a></h4>
+                                <p>This is a Dobble social network simple group</p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="group-item">
+                                <img src="~/Content/Users/img/group.png" />
+                                <h4><a href="#">Sample Group</a></h4>
+                                <p>This is a Dobble social network simple group</p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="group-item">
+                                <img src="~/Content/Users/img/group.png" />
+                                <h4><a href="#">Sample Group</a></h4>
+                                <p>This is a Dobble social network simple group</p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <a class="btn btn-primary" href="#">View All Groups</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Dobble Copyright &copy; 2015, All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="~/scripts/jquery-1.12.4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+
+            $("#imageBrowse").change(function () {
+                var File = this.files;
+                if (File && File[0]) {
+                    ReadImage(File[0]);
+                }
+
+            })
+
+            var ReadImage = function (file) {
+                var reader = new FileReader;
+                var image = new Image;
+
+                reader.readAsDataURL(file);
+                reader.onload = function (_file) {
+                    image.src = _file.target.result;
+                    image.onload = function () {
+                        var height = this.height;
+                        var width = this.width;
+                        var type = file.type;
+                        var size = ~~(file.size / 1024 + "KB");
+
+                        $("#targetimg").attr('src', _file.target.result);
+                        $("#captions").show();
+                        $("#description").text("Size:" + size + "," + height + "X" + width + "," + type + ",")
+                        $("#imgPreview").change();
+
+
+
+
+                    }
+
+                }
+            }
+
+
+            //var UploadImage = function () {
+
+            //    alert("alert");
+            //    var file = $("#imageBrowse").get(0).files;
+
+            //    var data = new FormData;
+            //    data.append("UserImage", file(0));
+            //    data.append("UserName", "ABC");
+            //    $.ajax({
+            //        type: "Post",
+            //        url: "/Account/UploadImage",
+            //        data: data,
+            //        contentType: false,
+            //        processData: false,
+            //        success: function (response) {
+            //            $("#uploadedimg").append('<img src= "/UploadedImages/' + response + '" class="img-respnsive thumbnail"/>');
+
+            //            alert('saved');
+
+            //        }
+            //    });
+            //}
+
+            $("#upload").click(function () {
+                  
+             
+                
+
+
+                var file = $("#imageBrowse").get(0).files;
+
+                var data = new FormData;
+                var image = data.append("UserImage", file[0]);
+                data.append("UserName", "@Model.E_users.Username");
+                data.append("FirstName", "@Model.E_users.FirstName");
+                data.append("LastName", "@Model.E_users.LastName");
+                data.append("ID", "@Model.E_users.ID");
+                data.append("Email", "@Model.E_users.Email");
+
+                //var image=   data.append("UserImage", file[0]);
+                // data.append("UserName", "Hira");
+
+                alert("h");
+                $.ajax({
+
+                    type: "Post",
+                    url: "@Url.Action("UploadImage", "Account")",
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function (imgID) {
+                        $("#profileimg").show();
+                        $("#targetimg").hide();
+                        $("#captions").hide();
+                        $("#profileimg").attr("src", "/Account/ImageRetrive/?imgID=" + imgID);
+                        alert(imgID);
+                        //$("#uploadedimg").append('<img src= "/Account/ImageRetrive/?imgID='+imgID+'" class="img-responsive thumbnail"/>');
+
+                        //alert('saved');
+
+                    },
+                    error: function(e)
+                    {
+                        alert(e);
+                        console.log(e);
+                    }
+
+                  
+                });
+            })
+        })
+
+        function getImage()
+        {
+       
+        }
+    </script>
+</body>
+
+
+

@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Mart </title>
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="~/Content/Users/css/style.css" rel="stylesheet">
+    <link href="~/Content/Users/css/font-awesome.css" rel="stylesheet">
+    <script src="~/scripts/jquery-1.12.4.min.js"></script>
+    <link href="~/Content/Users/css/ekko-lightbox.css" rel="stylesheet">
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+  
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <style>
+        .fill-width.dropdown {
+            position: static;
+        }
+
+            .fill-width.dropdown > .dropdown-menu {
+                left: 0;
+                width: 100%;
+                z-index: 1000000;
+            }
+
+                .fill-width.dropdown > .dropdown-menu > li > a {
+                    white-space: normal;
+                }
+    </style>
+    <script>
+        function updateNotificationStatus() {
+            //alert("Clicked");
+            $.ajax({
+                url: "@Url.Action("UpdateNotificationStatus", "Account").ToString()",
+                type: "POST",
+                success: function (response) {
+                    console.log("Success");
+                    console.log(response);
+                    $("#notifications").css("color", "white");
+                },
+                error: function(response){
+                    console.log(response);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="~/Content/Users/img/logo.png" class="logo" alt="" style="width:30%">
+            @*<form class="form-inline"> *@
+
+            @if (Session["ID"] != null)
+            {
+                var a = Session["ID"];
+
+                <div class="row" style="position:relative;">
+                    <div class="col-md-8">
+                       
+                    </div>
+                    <div class="col-md-4" style="float:right">
+                        <div class="row" style="position:relative;">
+                            <div class="col-md-8 col-xs-8"></div>
+                            <div class="col-md-1 col-xs-1" style="position:static;">
+                                <div class="dropdown fill-width">
+                                    <a onclick="updateNotificationStatus()" href="#" style="color:white;font-size:150%;" class="glyphicon glyphicon-bell" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    </a>
+                                    <div id="notificationdropdown" class="dropdown-menu" aria-labelledby="notifications">
+                                        @*<li><a style="margin:1%;" href="#" class="dropdown-item">Action</a></li>
+                                            <div class="dropdown-divider"></div>
+                                            <li><a style="margin:1%;" href="#" class="dropdown-item">Action</a></li>
+                                            <div class="dropdown-divider"></div>
+                                            <li><a style="margin:1%;" href="#" class="dropdown-item">dsdffffffffffffffffffffffffffffffsfsd</a></li>
+                                            <div class="dropdown-divider"></div>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-xs-3">
+                                <a href="/Account/Logout" class="btn btn-success">Logout</a>
+                                <a href="/Shop/Create/@Session["ID"]" class="btn btn-success">Create Shop</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                @*<button type="submit" class="btn btn-success">Create Shop</button>*@
+            }
+            else
+            {
+                <ul style="float:right">
+                    <li id="login">
+                        <a href="/account/login" class="btn btn-success">Login</a><br>
+
+                    </li>
+                    <li id="register">
+                        <a href="/account/register" class="btn btn-success">Register</a><br>
+
+                    </li>
+                </ul>
+            }
+
+
+
+            @*  </form> *@
+
+        </div>
+
+
+        @if (Session["ID"] != null)
+        {
+
+        }
+    </header>
+
+    <div class="container">
+        @RenderBody()
+        <hr />
+
+    </div>
+
+    @*<script>
+            $(document).ready(function () {
+                $("#profileview").change(function () {
+                    var id="1";
+                    $.ajax({
+                        type: "POST",
+                        url:"@Url.Action("ImageRetriveFromUSer", "Account")",
+                        data: id,
+                        datatype:json,
+                    success:function(response){
+
+                    }
+
+
+
+                    })
+                })
+            })
+        </script>*@
+</body>
+
+</html>

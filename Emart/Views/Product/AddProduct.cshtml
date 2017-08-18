@@ -1,0 +1,255 @@
+﻿@model Emart.ViewModels.ProductViewModel
+
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Product/_AddProduct.cshtml";
+}
+<div class="app-content content container-fluid">
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-6 col-xs-12 mb-1">
+                <h2 class="content-header-title">Add Product</h2>
+            </div>
+            <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
+                <div class="breadcrumb-wrapper col-xs-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#">Form Layouts</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <a href="#">Basic Forms</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <form name="myForm" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+
+
+                <section id="basic-form-layouts">
+                    <div class="row match-height">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title" id="basic-layout-form">Product Info</h4>
+                                    <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                                    <div class="heading-elements">
+                                        <ul class="list-inline mb-0">
+                                            <li>
+                                                <a data-action="collapse"><i class="icon-minus4"></i></a>
+                                            </li>
+                                            <li>
+                                                <a data-action="reload"><i class="icon-reload"></i></a>
+                                            </li>
+                                            <li>
+                                                <a data-action="expand"><i class="icon-expand2"></i></a>
+                                            </li>
+                                            <li>
+                                                <a data-action="close"><i class="icon-cross2"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                @Html.Hidden("id", null, new { @id = "id" })
+                                <div class="card-body collapse in">
+                                    <div class="card-block">
+                                        <div class="card-text">
+                                        </div>
+                                        <div class="form-body">
+                                            <h4 class="form-section">
+                                                <i class="icon-head"></i>Add Product
+                                            </h4>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="projectinput1">Full Product Name</label>
+                                                        @Html.TextBox("ProductName", null, new { @class = "form-control", @placeholder = "Short - Sleeve - Shirt" })
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="projectinput3">Description</label>
+                                                        <div id="sample">
+                                                            @Html.TextArea("ProductDescription", null, new { @class = "form-control", @placeholder = "Full-Description" })
+
+
+                                                            <br />
+                                                            <br />
+                                                            <div style="clear: both;"></div>
+                                                            <script src="~/scripts/bootstrap-wysihtml5.js" type="text/javascript"></script>
+                                                            <script>
+                                                                $('#editor').wysiwyg();
+
+                                                            </script>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <h4 class="form-section">
+                                                <i class="icon-clipboard4"></i> Pricing
+                                            </h4>
+                                            <div class="form-group">
+                                                <label for="companyName">Price</label>
+                                                @Html.TextBox("NewPrice", null, new { @class = "form-control" })
+                                                
+
+
+
+
+                                            </div>
+                                            <h4 class="form-section">
+                                                <i class="icon-clipboard4"></i>Imaging
+                                            </h4>
+                                            <div class="form-group">
+                                                <label>Select File</label>
+                                                <label id="projectinput7" class="file center-block">
+
+                                                    @Html.TextBox("file", "", new { type = "file", onchange = "loadFile(event)" }) <br /> 
+                                                    <span class="file-custom"></span>
+                                                </label>
+                                            </div>
+                                            <img id="output" width=350 height="350"/>
+                                            <div class="form-group">
+                                                <label for="projectinput8">About Project</label>
+                                                <textarea id="projectinput8" rows="5" class="form-control" name="comment" placeholder="About Project"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title" id="basic-layout-colored-form-control">Organization</h4>
+                                    <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                                    <div class="heading-elements">
+                                        <ul class="list-inline mb-0">
+                                            <li>
+                                                <a data-action="collapse"><i class="icon-minus4"></i></a>
+                                            </li>
+                                            <li>
+                                                <a data-action="reload"><i class="icon-reload"></i></a>
+                                            </li>
+                                            <li>
+                                                <a data-action="expand"><i class="icon-expand2"></i></a>
+                                            </li>
+                                            <li>
+                                                <a data-action="close"><i class="icon-cross2"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-body collapse in">
+                                    <div class="card-block">
+                                        <div class="card-text">
+                                        </div>
+
+
+                                        <div class="form-body">
+                                            <h4 class="form-section">
+                                                <i class="icon-eye6"></i>Product Management
+                                            </h4>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="userinput1">Product Type</label>
+
+                                                        @Html.DropDownList("VendorCategoryId", new SelectList((System.Collections.IEnumerable)ViewData["mycate"], "VendorCatId", "VendorCategoryName"), new { @class = "form-control" })
+
+                                                        <label for="userinput1">Product Type</label>
+
+                                                        @Html.DropDownList("MainCategoryId", new SelectList((System.Collections.IEnumerable)ViewData["mycate"], "VendorCatId", "VendorCategoryName"), new { @class = "form-control" })
+
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div>
+                                                <h4 class="form-section">
+                                                    <i class="icon-mail6"></i>Product Attributes
+                                                </h4>
+                                                <div>
+
+                                                    <div id="divCont">
+                                                        <div>
+                                                            <input type="text" name="myattribute" />
+                                                            <input type="text" name="myvalue" />
+                                                            <input type="button" onclick="AddTextBox()" value="Add" />
+                                                        </div>
+                                                    </div>
+                                                    <br />
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <input type="submit" class="btn btn-primary" value="submit" />
+
+
+
+                </section>
+            </form>
+            <!-- // Basic form layout section end -->
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function GetDynamicTextbox(value) {
+        return '<div><input type="text" name="myattribute" /><input type="text" name="myvalue" /><input type="button" onclick="RemoveTextBox(this)" value="Remove"/></div>'
+    }
+
+    function AddTextBox() {
+        var div = document.createElement('DIV');
+        div.innerHTML = GetDynamicTextbox("");
+        document.getElementById("divCont").appendChild(div);
+    }
+
+    function RemoveTextBox(div) {
+        document.getElementById("divCont").removeChild(div.parentNode.parentNode);
+    }
+
+    function validateForm() {
+        alert('ok');
+        var x = document.getElementsByName('myattribute');
+
+        var y = document.getElementsByName('myvalue');
+
+        for (var i = 0; i < x.length; i++) {
+            x1 = document.getElementsByName('myattribute')[i].value;
+            if (x1 == "") {
+                alert("One of more attribute is empty");
+                return false;
+            }
+        }
+        for (var i = 0; i < y.length; i++) {
+            y1 = document.getElementsByName('myvalue')[i].value;
+            if (y1 == "") {
+                alert("One or more value is empty");
+                return false;
+            }
+        }
+    }
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
